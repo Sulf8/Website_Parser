@@ -26,14 +26,16 @@ public class Parser {
         Elements footballNews = mainNewsTable.select("a[title^=\"Футбол\"]");//прописать действие при null
         footballNews.stream()
                 .map(element -> {
-                    String[] splitted = element.toString().split("\"");
+                    /*String[] splitted = element.toString().split("\"");
 
                     String linkToString = Arrays.stream(splitted)
                             .filter(s-> s.contains("https://"))
+                            //.filter(("https://")::contains)
                             .findFirst()
                             .orElse("Нет ссылки");
 
-                    return "<a href=\"" + linkToString + "\">" + element.text() + "</a>";
+                    return "<a href=\"" + linkToString + "\">" + element.text() + "</a>";*/
+                    return element.text() + element.attr("href");
                 })
                 .forEach(System.out::println);//заместо печати это надо класть в Kafka
 
